@@ -1,13 +1,8 @@
-/**
- * Description: Responsive sider for mobile's layout
- * Author: Hieu Chu
- */
+import { useEffect, useRef } from "react";
+import { Layout } from "antd";
+import styled from "styled-components";
 
-import { useEffect, useRef } from 'react'
-import { Layout } from 'antd'
-import styled from 'styled-components'
-
-const { Sider } = Layout
+const { Sider } = Layout;
 
 const FixedSider = styled(Sider)`
   overflow: auto;
@@ -19,14 +14,14 @@ const FixedSider = styled(Sider)`
   @media (max-width: 575.98px) {
     display: none;
   }
-`
+`;
 
-export default ({ collapsed, setCollapsed, children }) => {
-  let firstMounted = useRef(false)
+const MySider = ({ collapsed, setCollapsed, children }) => {
+  let firstMounted = useRef(false);
 
   useEffect(() => {
-    firstMounted.current = true
-  }, [])
+    firstMounted.current = true;
+  }, []);
 
   return (
     <FixedSider
@@ -35,11 +30,13 @@ export default ({ collapsed, setCollapsed, children }) => {
       collapsible
       collapsed={collapsed}
       breakpoint="lg"
-      onBreakpoint={collapsed => {
-        firstMounted.current && setCollapsed(collapsed)
+      onBreakpoint={(collapsed) => {
+        firstMounted.current && setCollapsed(collapsed);
       }}
     >
       {children}
     </FixedSider>
-  )
-}
+  );
+};
+
+export default MySider;

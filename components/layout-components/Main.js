@@ -1,10 +1,5 @@
-/**
- * Description: Layout's main content component
- * Author: Hieu Chu
- */
-
-import { Layout } from 'antd'
-import styled, { css } from 'styled-components'
+import { Layout } from "antd";
+import styled, { css } from "styled-components";
 
 const MainLayout = styled(({ collapsed: _, ...props }) => (
   <Layout {...props} />
@@ -20,8 +15,10 @@ const MainLayout = styled(({ collapsed: _, ...props }) => (
   @media (max-width: 575.98px) {
     margin-left: 0;
   }
-`
+`;
 
-export default ({ children, collapsed }) => (
+const Main = ({ children, collapsed }) => (
   <MainLayout collapsed={collapsed}>{children}</MainLayout>
-)
+);
+
+export default Main;

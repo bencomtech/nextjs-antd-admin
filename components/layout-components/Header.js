@@ -1,21 +1,17 @@
-/**
- * Description: Header bar of page
- * Author: Hieu Chu
- */
+import { Icon, Layout, Dropdown, Menu } from "antd";
+import styled from "styled-components";
+import { Logo } from "./LogoTitle";
+import Link from "next/link";
+import { useOAuth } from "../../context/auth";
+import nookies from "nookies";
+import Router from "next/router";
 
-import { Icon, Layout, Dropdown, Menu } from 'antd'
-const { Header } = Layout
-import styled from 'styled-components'
-import { Logo } from './LogoTitle'
-import Link from 'next/link'
-import { useAuth0 } from '../auth0-components'
-import nookies from 'nookies'
-import Router from 'next/router'
+const { Header } = Layout;
 
 const TriggerBlock = styled.div`
   display: inline-block;
   height: 100%;
-`
+`;
 
 const StyledImageBlock = styled(TriggerBlock)`
   @media (min-width: 576px) {
@@ -23,12 +19,12 @@ const StyledImageBlock = styled(TriggerBlock)`
   }
 
   padding-left: 24px;
-  ${'' /* cursor: pointer; */}
-`
+  ${"" /* cursor: pointer; */}
+`;
 
 const MobileLogo = styled(Logo)`
   vertical-align: -10px;
-`
+`;
 
 const HeaderBlock = styled(TriggerBlock)`
   padding: 0 12px;
@@ -38,25 +34,26 @@ const HeaderBlock = styled(TriggerBlock)`
   &:hover {
     background: rgba(0, 0, 0, 0.025);
   }
-`
+`;
 
 const MyMenu = () => {
-  const { logout, user } = useAuth0()
+  const { logout, user } = useOAuth();
+
   return (
     <Menu
-      onClick={item => {
-        if (item.key == 'logout') {
+      onClick={(item) => {
+        if (item.key == "logout") {
           logout({
             returnTo:
-              process.env.NODE_ENV === 'development'
-                ? 'http://localhost:3000'
-                : 'https://dashboard.uowac.now.sh',
-            client_id: process.env.AUTH0_CLIENT_ID
-          })
-          nookies.destroy({}, 'auth0.is.authenticated')
-          nookies.destroy({}, 'accessToken')
-        } else if (item.key == 'profile') {
-          Router.push('/users/id/[id]', `/users/id/${user.sub}`)
+              process.env.NODE_ENV === "development"
+                ? "http://localhost:3000"
+                : "https://dashboard.uowac.now.sh",
+            client_id: process.env.AUTH0_CLIENT_ID,
+          });
+          nookies.destroy({}, "auth0.is.authenticated");
+          nookies.destroy({}, "accessToken");
+        } else if (item.key == "profile") {
+          Router.push("/users/id/[id]", `/users/id/${user.sub}`);
         }
       }}
     >
@@ -70,19 +67,19 @@ const MyMenu = () => {
         Logout
       </Menu.Item>
     </Menu>
-  )
-}
+  );
+};
 
-export default ({ collapsed, handleToggle }) => {
-  const { isAuthenticated } = useAuth0()
+const MyHeader = ({ collapsed, handleToggle }) => {
+  const { isAuthenticated } = useOAuth();
 
   return (
     <Header
       style={{
-        background: '#fff',
+        background: "#fff",
         padding: 0,
-        boxShadow: '0 1px 4px rgba(0,21,41,.08)',
-        display: 'flex'
+        boxShadow: "0 1px 4px rgba(0,21,41,.08)",
+        display: "flex",
       }}
     >
       <Link href="/">
@@ -96,11 +93,11 @@ export default ({ collapsed, handleToggle }) => {
       <TriggerBlock>
         <Icon
           className="trigger"
-          type={collapsed ? 'menu-unfold' : 'menu-fold'}
+          type={collapsed ? "menu-unfold" : "menu-fold"}
           onClick={handleToggle}
           style={{
             fontSize: 20,
-            verticalAlign: 'middle'
+            verticalAlign: "middle",
           }}
         />
       </TriggerBlock>
@@ -108,7 +105,7 @@ export default ({ collapsed, handleToggle }) => {
       {isAuthenticated && (
         <div
           style={{
-            marginLeft: 'auto'
+            marginLeft: "auto",
           }}
         >
           <Dropdown overlay={<MyMenu />} placement="bottomRight">
@@ -124,5 +121,7 @@ export default ({ collapsed, handleToggle }) => {
         </div>
       )}
     </Header>
-  )
-}
+  );
+};
+
+export default MyHeader;

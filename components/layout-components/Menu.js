@@ -1,13 +1,8 @@
-/**
- * Description: Drawer's menu list
- * Author: Hieu Chu
- */
+import { Menu, Icon } from "antd";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
-import { Menu, Icon } from 'antd'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
-
-const keys = ['/', '/sculptures', '/makers', '/users', '/recent-activity']
+const keys = ["/", "/sculptures", "/makers", "/users", "/recent-activity"];
 
 const menu = [
   <Menu.Item key={keys[0]}>
@@ -49,18 +44,18 @@ const menu = [
         <span>Recent Activity</span>
       </a>
     </Link>
-  </Menu.Item>
-]
+  </Menu.Item>,
+];
 
 export default ({ style, closeDrawer }) => {
-  const router = useRouter()
-  const currentPath = router.route
-  let selectedKeys = []
+  const router = useRouter();
+  const currentPath = router.route;
+  let selectedKeys = [];
 
   for (let i = keys.length - 1; i >= 0; i--) {
     if (currentPath.includes(keys[i])) {
-      selectedKeys = [keys[i]]
-      break
+      selectedKeys = [keys[i]];
+      break;
     }
   }
 
@@ -69,13 +64,13 @@ export default ({ style, closeDrawer }) => {
       theme="dark"
       mode="inline"
       selectedKeys={selectedKeys}
-      style={{ ...style, padding: '16px 0' }}
+      style={{ ...style, padding: "16px 0" }}
       onClick={({ key }) => {
-        closeDrawer()
-        router.push(key)
+        closeDrawer();
+        router.push(key);
       }}
     >
       {menu}
     </Menu>
-  )
-}
+  );
+};
