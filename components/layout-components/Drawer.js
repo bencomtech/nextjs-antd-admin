@@ -6,7 +6,8 @@ const StyledDrawer = styled(Drawer)`
     overflow: hidden !important;
   }
 `;
-export default ({ drawerVisible, closeDrawer, children }) => (
+
+const MyDrawer = ({ drawerVisible, closeDrawer, children }) => (
   <StyledDrawer
     placement="left"
     closable={false}
@@ -20,3 +21,5 @@ export default ({ drawerVisible, closeDrawer, children }) => (
     {children}
   </StyledDrawer>
 );
+
+export default MyDrawer;

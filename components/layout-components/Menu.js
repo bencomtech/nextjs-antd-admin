@@ -2,7 +2,7 @@ import { Menu, Icon } from "antd";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-const keys = ["/", "/sculptures", "/makers", "/users", "/recent-activity"];
+const keys = ["/"];
 
 const menu = [
   <Menu.Item key={keys[0]}>
@@ -13,41 +13,9 @@ const menu = [
       </a>
     </Link>
   </Menu.Item>,
-  <Menu.Item key={keys[1]}>
-    <Link href={keys[1]}>
-      <a>
-        <Icon type="trophy" />
-        <span>Sculptures</span>
-      </a>
-    </Link>
-  </Menu.Item>,
-  <Menu.Item key={keys[2]}>
-    <Link href={keys[2]}>
-      <a>
-        <Icon type="code-sandbox" />
-        <span>Makers</span>
-      </a>
-    </Link>
-  </Menu.Item>,
-  <Menu.Item key={keys[3]}>
-    <Link href={keys[3]}>
-      <a>
-        <Icon type="team" />
-        <span>Users</span>
-      </a>
-    </Link>
-  </Menu.Item>,
-  <Menu.Item key={keys[4]}>
-    <Link href={keys[4]}>
-      <a>
-        <Icon type="history" />
-        <span>Recent Activity</span>
-      </a>
-    </Link>
-  </Menu.Item>,
 ];
 
-export default ({ style, closeDrawer }) => {
+const MyManu = ({ style, closeDrawer }) => {
   const router = useRouter();
   const currentPath = router.route;
   let selectedKeys = [];
@@ -74,3 +42,5 @@ export default ({ style, closeDrawer }) => {
     </Menu>
   );
 };
+
+export default MyManu;

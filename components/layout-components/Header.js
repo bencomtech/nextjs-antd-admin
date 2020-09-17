@@ -43,25 +43,9 @@ const MyMenu = () => {
     <Menu
       onClick={(item) => {
         if (item.key == "logout") {
-          logout({
-            returnTo:
-              process.env.NODE_ENV === "development"
-                ? "http://localhost:3000"
-                : "https://dashboard.uowac.now.sh",
-            client_id: process.env.AUTH0_CLIENT_ID,
-          });
-          nookies.destroy({}, "auth0.is.authenticated");
-          nookies.destroy({}, "accessToken");
-        } else if (item.key == "profile") {
-          Router.push("/users/id/[id]", `/users/id/${user.sub}`);
         }
       }}
     >
-      <Menu.Item key="profile">
-        <Icon type="user" />
-        Profile
-      </Menu.Item>
-      <Menu.Divider style={{ marginTop: -5, marginBottom: 0 }} />
       <Menu.Item key="logout">
         <Icon type="logout" />
         Logout

@@ -5,7 +5,7 @@ const Dashboard = () => {
   return (
     <>
       <Head>
-        <title>Dashboard - UOW Sculptures</title>
+        <title>Dashboard - Heng</title>
       </Head>
       <Row gutter={16}></Row>
     </>

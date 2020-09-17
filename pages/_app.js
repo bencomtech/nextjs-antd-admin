@@ -1,12 +1,12 @@
 import NextApp from "next/app";
 import Router, { withRouter } from "next/router";
-import NProgress from "nprogress";
-import Layout from "../components/Layout";
+import Head from "next/head";
 import Error from "next/error";
+import NProgress from "nprogress";
+import nookies from "nookies";
 import { OAuthProvider, useOAuth } from "../context/auth";
 import Loading from "../components/Loading";
-import Head from "next/head";
-import nookies from "nookies";
+import Layout from "../components/Layout";
 
 if (process.env.NODE_ENV !== "production") {
   Router.events.on("routeChangeComplete", () => {
@@ -64,7 +64,7 @@ class AppWrapper extends NextApp {
     return (
       <>
         <Head>
-          <title>UOW Sculptures</title>
+          <title>Heng</title>
         </Head>
         {router.pathname !== "/_error" ? (
           <OAuthProvider>
