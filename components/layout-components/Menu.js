@@ -1,4 +1,5 @@
-import { Menu, Icon } from "antd";
+import { DashboardOutlined } from '@ant-design/icons';
+import { Menu } from "antd";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -8,7 +9,7 @@ const menu = [
   <Menu.Item key={keys[0]}>
     <Link href={keys[0]}>
       <a>
-        <Icon type="dashboard" />
+        <DashboardOutlined />
         <span>Dashboard</span>
       </a>
     </Link>

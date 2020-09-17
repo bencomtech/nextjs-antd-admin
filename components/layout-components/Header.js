@@ -1,4 +1,10 @@
-import { Icon, Layout, Dropdown, Menu } from "antd";
+import {
+  LogoutOutlined,
+  UserOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+} from "@ant-design/icons";
+import { Layout, Dropdown, Menu } from "antd";
 import styled from "styled-components";
 import { Logo } from "./LogoTitle";
 import Link from "next/link";
@@ -19,7 +25,6 @@ const StyledImageBlock = styled(TriggerBlock)`
   }
 
   padding-left: 24px;
-  ${"" /* cursor: pointer; */}
 `;
 
 const MobileLogo = styled(Logo)`
@@ -47,7 +52,7 @@ const MyMenu = () => {
       }}
     >
       <Menu.Item key="logout">
-        <Icon type="logout" />
+        <LogoutOutlined />
         Logout
       </Menu.Item>
     </Menu>
@@ -75,15 +80,25 @@ const MyHeader = ({ collapsed, handleToggle }) => {
       </Link>
 
       <TriggerBlock>
-        <Icon
-          className="trigger"
-          type={collapsed ? "menu-unfold" : "menu-fold"}
-          onClick={handleToggle}
-          style={{
-            fontSize: 20,
-            verticalAlign: "middle",
-          }}
-        />
+        {collapsed ? (
+          <MenuUnfoldOutlined
+            className="trigger"
+            onClick={handleToggle}
+            style={{
+              fontSize: 20,
+              verticalAlign: "middle",
+            }}
+          />
+        ) : (
+          <MenuFoldOutlined
+            className="trigger"
+            onClick={handleToggle}
+            style={{
+              fontSize: 20,
+              verticalAlign: "middle",
+            }}
+          />
+        )}
       </TriggerBlock>
 
       {isAuthenticated && (
@@ -94,8 +109,7 @@ const MyHeader = ({ collapsed, handleToggle }) => {
         >
           <Dropdown overlay={<MyMenu />} placement="bottomRight">
             <HeaderBlock>
-              <Icon
-                type="user"
+              <UserOutlined
                 style={{ fontSize: 16, marginRight: 8 }}
                 title="User"
               />
